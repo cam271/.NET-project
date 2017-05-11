@@ -1,0 +1,109 @@
+﻿@model ChrisDemo.ViewModel.Order.DetailsViewModel
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Order</h4>
+    <hr />
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.Order.Id)
+                </th>
+
+                <th>
+                    @Html.DisplayNameFor(model => model.Order.Date)
+                </th>
+
+                <th>
+                    @Html.DisplayNameFor(model => model.Order.Location)
+                </th>
+
+                <th>
+                    @Html.DisplayNameFor(model => model.Order.Customer.Name)
+                </th>
+
+                <th></th>
+            </tr>
+        </thead>
+
+        <tr>
+            <td>
+                @Html.DisplayFor(model => model.Order.Id)
+            </td>
+
+            <td>
+                @Html.DisplayFor(model => model.Order.Date)
+            </td>
+
+            <td>
+                @Html.ActionLink(Model.Order.Location.Name, "Details", "Location", new { id = Model.Order.LocationId }, null)
+            </td>
+
+
+            @if (Model.Order.Customer != null)
+            {
+                <td>
+                    @Html.ActionLink(Model.Order.Customer.Name, "Details", "Customer", new { id = Model.Order.CustomerId }, null)
+                </td>
+            }
+            else
+            {
+                <td></td>
+            }         
+           
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = Model.Order.Id }) |
+                @Html.ActionLink("Delete", "Delete", new { id = Model.Order.Id }) |
+                @Html.ActionLink("Back to List", "Index")
+            </td>
+        </tr>        
+    </table>
+
+    @*
+        Create a table
+        Assign table header statically
+        Loop over the OrderItems
+        Display a table row for each
+    *@
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    Item Number
+                </th>
+                <th>
+                    Price
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        
+
+        @foreach(var oi in Model.Order.OrderItems)
+        {
+            <tr>
+               
+                <td>
+                    @Html.ActionLink(oi.Item.ItemNumber, "Details", "Item", new { id = oi.ItemId.ToString() }, null) <br /><br />
+                </td>
+                <td>
+                    @oi.Price.ToString()
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "EditItem", new { id = oi.Id }) |
+                    @Html.ActionLink("Delete", "DeleteOrderItem", new { id = oi.Id }) |
+                </td>
+            </tr>
+        }       
+    </table>
+
+    @Html.ActionLink("Add Item", "CreateItem", new { id = Model.Order.Id })
+
+</div>
+

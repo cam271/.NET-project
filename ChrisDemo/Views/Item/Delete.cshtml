@@ -1,0 +1,39 @@
+﻿@model ChrisDemo.ViewModel.Item.DeleteViewModel
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<div>
+    <h3>Are you sure you want to delete this?</h3>
+    <h4>Item</h4>
+    <hr />
+
+    <dl class="form-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Item.CategoryId)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Item.CategoryId)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Item.Description)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Item.Description)
+        </dd>
+    </dl>
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>
+

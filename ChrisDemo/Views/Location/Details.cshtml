@@ -1,0 +1,39 @@
+﻿@model ChrisDemo.ViewModel.Location.DetailsViewModel
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Location</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Location.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Location.Name) <br />
+        </dd>        
+        <dt>
+            Items
+        </dt>
+
+        <dd>
+            @foreach (var item in Model.Location.Items)
+            {
+                @Html.DisplayFor(model => item.ItemNumber) <br />
+                @Html.DisplayFor(model => item.Description) <br />
+                <br />
+            }
+        </dd>
+    </dl>
+</div>
+
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Location.Id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
+

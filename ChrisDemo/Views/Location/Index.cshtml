@@ -1,0 +1,38 @@
+﻿@model ChrisDemo.ViewModel.Location.IndexViewModel
+
+@{
+    ViewBag.Title = "Location";
+}
+
+<h2>Locations</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+<p>
+
+<table class="table">
+    <thead>
+        <tr>           
+            <th>
+                Name
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+
+    <tbody>
+        @foreach(var location in Model.Locations)
+        {
+            <tr>               
+                <td>
+                    @location.Name
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id=location.Id }) |
+                    @Html.ActionLink("Details", "Details", new { id = location.Id }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = location.Id }) |
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

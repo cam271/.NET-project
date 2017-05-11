@@ -1,0 +1,64 @@
+﻿@model ChrisDemo.ViewModel.Order.IndexViewModel
+
+@{
+    ViewBag.Title = "Order";
+}
+
+<h2>Order</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+<p>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Order Id
+            </th>
+            <th>
+                Date
+            </th>
+            <th>
+                Location
+            </th>
+            <th>
+                Customer
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+
+    <tbody>
+        @foreach (var order in Model.Orders)
+        {
+            <tr>
+                <td>
+                    @order.Id
+                </td>
+                <td>
+                    @order.Date
+                </td>
+                <td>
+                    @order.Location.Name
+                </td>
+
+                @if (order.Customer != null)
+                {
+                    <td>
+                        @Html.ActionLink(order.Customer.Name, "Details", "Customer", new { id = order.CustomerId }, null)
+                    </td>
+                }
+                else
+                {
+                    <td></td>
+                }
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = order.Id }) |
+                    @Html.ActionLink("Details", "Details", new { id = order.Id }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = order.Id }) |
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

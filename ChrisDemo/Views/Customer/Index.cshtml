@@ -1,0 +1,50 @@
+﻿@model ChrisDemo.ViewModel.Customer.IndexViewModel
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Customer</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+<p>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    Customer Id
+                </th>
+                <th>
+                    Name
+                </th>
+                <th>
+                    Location
+                </th>                
+                <th></th>
+            </tr>
+        </thead>
+
+        <tbody>
+            @foreach (var customer in Model.Customers)
+            {
+                <tr>
+                    <td>
+                        @customer.Id
+                    </td>
+                    <td>
+                        @Html.ActionLink(customer.Name, "Details", new { id = customer.Id }, null)
+                    </td>
+                    <td>
+                        @Html.ActionLink(customer.Location.Name, "Details", "Location", new { id = customer.LocationId }, null)
+                    </td>                    
+                    <td>
+                        @Html.ActionLink("Edit", "Edit", new { id = customer.Id }) |
+                        @Html.ActionLink("Details", "Details", new { id = customer.Id }) |
+                        @Html.ActionLink("Delete", "Delete", new { id = customer.Id }) |
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>

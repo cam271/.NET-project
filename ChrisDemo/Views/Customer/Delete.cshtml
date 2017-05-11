@@ -1,0 +1,71 @@
+﻿@model ChrisDemo.ViewModel.Customer.DeleteViewModel
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<div>
+    <h4>Customer</h4>
+    <hr />
+
+    @if (Model.Customer.Orders.Count() == 0)
+    {
+        <h3>Are you sure you want to delete this?</h3>
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.Customer.Name)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Customer.Name)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.Customer.Address)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Customer.Address)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Customer.City)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Customer.City)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Customer.State)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Customer.State)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Customer.Zip)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Customer.Zip)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.Customer.Location)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Customer.Location.Name)
+            </dd>
+
+            @using (Html.BeginForm())
+            {
+                @Html.AntiForgeryToken()
+
+                <div class="form-actions no-color">
+                    <input type="submit" value="Delete" class="btn btn-default" /> |
+                    @Html.ActionLink("Back to List", "Index")
+                </div>
+            }
+        </dl>
+    }
+    else
+    {
+        <p>You can not delete this customer, because orders exist</p>
+    }   
+</div>

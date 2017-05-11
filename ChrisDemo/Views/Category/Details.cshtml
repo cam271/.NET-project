@@ -1,0 +1,47 @@
+﻿@model ChrisDemo.ViewModel.Category.DetailsViewModel
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Category</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Category.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Category.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Category.Description)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Category.Description) <br /><br />
+        </dd>    
+        <dt>
+           @Html.DisplayNameFor(model => model.Category.Items)
+        </dt>
+
+        <dd>
+            @foreach (var item in Model.Category.Items)
+            {
+                @Html.DisplayFor(model => item.ItemNumber) <br />
+                @Html.DisplayFor(model => item.Description) <br />
+                <br />
+            }       
+        </dd>
+    </dl>
+</div>
+
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Category.Id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
+

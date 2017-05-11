@@ -1,0 +1,44 @@
+﻿@model ChrisDemo.ViewModel.Category.IndexViewModel
+
+@{
+    ViewBag.Title = "Category";
+}
+
+<h2>Categories</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+<p>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    Name
+                </th>
+                <th>
+                    Description
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+
+        <tbody>
+            @foreach (var Category in Model.Categories)
+            {
+                <tr>
+                    <td>
+                        @Category.Name
+                    </td>
+                    <td>
+                        @Category.Description
+                    </td>
+                    <td>
+                        @Html.ActionLink("Edit", "Edit", new { id = Category.Id }) |
+                        @Html.ActionLink("Details", "Details", new { id = Category.Id }) |
+                        @Html.ActionLink("Delete", "Delete", new { id = Category.Id }) |
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>

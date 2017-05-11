@@ -1,0 +1,71 @@
+﻿@model ChrisDemo.ViewModel.Customer.DetailsViewModel
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Customer</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Customer.Name)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Customer.Name)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Customer.Address)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Customer.Address)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Customer.City)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Customer.City)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Customer.State)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Customer.State)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Customer.Zip)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Customer.Zip)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Customer.Location)
+        </dt>
+        <dd>
+            @Html.ActionLink(Model.Customer.Location.Name, "Details", "Location", new { id = Model.Customer.LocationId }, null)
+        </dd>
+
+        @* List of Orders *@
+        <dt>
+            @Html.DisplayNameFor(model => model.Customer.Orders)
+        </dt>
+
+        <dd>
+            @foreach( var o in Model.Customer.Orders.ToList())
+            {            
+                @Html.ActionLink(o.Id.ToString(), "Details", "Order", new { id = o.Id }, null)
+                <br />
+            }
+        </dd>
+    </dl>
+</div>
+
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Customer.Id }) |
+    @Html.ActionLink("Delete", "Delete", new { id = Model.Customer.Id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
